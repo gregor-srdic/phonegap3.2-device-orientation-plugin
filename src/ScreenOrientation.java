@@ -5,11 +5,8 @@ import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
-
-
 
 public class ScreenOrientation extends CordovaPlugin {
     // Refer to http://developer.android.com/reference/android/R.attr.html#screenOrientation
@@ -56,8 +53,10 @@ public class ScreenOrientation extends CordovaPlugin {
             } else if (orientation.equals(FULL_SENSOR)) {
                 activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
             }
+			callbackContext.success();
             return true;
         } else {
+			callbackContext.error("Invalid action");
             return false;
         }
     }
